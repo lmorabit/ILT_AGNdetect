@@ -190,7 +190,7 @@ def find_agn( flux_per_SA, T_e=1e4, rf_array=np.array([0.003,0.01,0.03,0.1,0.3,1
         tb = T_e * opt_depth_term * ( 1. + 10. * (freq/1e9)**(0.1+alpha) ) 
         mJyperasec2 = tb * (freq)**2. / 1.38e24 * 1e3
         flux_per_SA_rfs.append(mJyperasec2)
-    maxval = np.max(np.array(flux_per_SA_rfs)) #% Got confused here, so you take the highest Tb? and this is normally where nu_0 is 3GHz?
+    maxval = np.max(np.array(flux_per_SA_rfs))
     idx = np.where(flux_per_SA >= maxval)[0]
     return( idx )
 
@@ -199,7 +199,7 @@ def find_agn_withz( flux_per_SA, redshift, T_e=1e4, rf_array=np.array([0.003,0.0
     flux_per_SA_rfs = []
     for rf in rf_array:        
         tau_norm = 1. 
-        opt_depth_term = 1. - np.exp( - tau_norm * ( freq / rf )**-2.1 ) #% Should this have 1+z with freq?
+        opt_depth_term = 1. - np.exp( - tau_norm * ( freq / rf )**-2.1 ) 
         tb = T_e * opt_depth_term * ( 1. + 10. * (freq/1e9)**(0.1+alpha) ) 
         mJyperasec2 = tb * (freq/(1.+redshift))**2. / 1.38e24 * 1e3
         flux_per_SA_rfs.append(mJyperasec2)
